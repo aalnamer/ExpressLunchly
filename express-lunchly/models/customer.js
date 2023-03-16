@@ -15,7 +15,9 @@ class Customer {
   }
 
   /** find all customers. */
-
+  get fullname() {
+    return `${this.firstName} ${this.lastName}`;
+  }
   static async all() {
     const results = await db.query(
       `SELECT id, 
@@ -26,7 +28,7 @@ class Customer {
        FROM customers
        ORDER BY last_name, first_name`
     );
-    return results.rows.map(c => new Customer(c));
+    return results.rows.map((c) => new Customer(c));
   }
 
   /** get a customer by ID. */
